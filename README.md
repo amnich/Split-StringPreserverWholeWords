@@ -1,5 +1,5 @@
 # Split-StringPreserverWholeWords
-Powershell function to split a string by a given length with preservation of whole words
+Powershell function to split a string by a given maximal length with preservation of whole words
 
 ### EXAMPLE 1
 Split long string to smaller strings with max length of 30
