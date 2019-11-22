@@ -40,7 +40,7 @@ function Split-StringPreserverWholeWords {
             Split-StringPreserverWholeWords -string ($string[$($lastIndex+1)..$($string.Length)] -join '').trim() -splitLength $splitLength -OldString $OldString -FindSmallestDivider:$FindSmallestDivider -Divider $Divider
         } 
         else{
-            $string[$($lastIndex+1)..$($string.Length)] -join ''
+            ($string[$($lastIndex+1)..$($string.Length)] -join '').trim()
         }    
     }
     else {
