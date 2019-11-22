@@ -5,7 +5,9 @@ function Split-StringPreserverWholeWords {
         [int]$SplitLength = $string.length / 2,
         [switch]$FindSmallestDivider,
         [string]$Divider=' ',
+        [switch]$TrimOutput,
         $OldString
+
     )    
     if (!$OldString) {
         $OldString = $string
@@ -34,13 +36,27 @@ function Split-StringPreserverWholeWords {
                 break
             }
         }
-        $newString = ($string[0..$lastIndex] -join '')
-        $newString.trim()
+        $newString = $string.substring(0,$lastIndex)
+        if ($TrimOutput){
+            $newString.trim()
+        }else{
+            $newString
+        }
         if ($string.Length - $newString.Length -gt $splitLength) {
-            Split-StringPreserverWholeWords -string ($string[$($lastIndex+1)..$($string.Length)] -join '').trim() -splitLength $splitLength -OldString $OldString -FindSmallestDivider:$FindSmallestDivider -Divider $Divider
+             if ($TrimOutput){
+                $text = $string.Substring($lastIndex+1).trim()
+            }else{
+                $text = $string.Substring($lastIndex+1)
+            }
+            Split-StringPreserverWholeWords -string $text -splitLength $splitLength -OldString $OldString -FindSmallestDivider:$FindSmallestDivider -Divider $Divider
         } 
         else{
-            ($string[$($lastIndex+1)..$($string.Length)] -join '').trim()
+            if ($TrimOutput){
+                ($string[$($lastIndex+1)..$($string.Length)] -join '').trim()
+            }else{
+                $string[$($lastIndex+1)..$($string.Length)] -join ''
+            }
+            
         }    
     }
     else {
