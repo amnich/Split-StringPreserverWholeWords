@@ -55,7 +55,7 @@ amet,
 WARNING: Split failed. Smallest divider is 13
 
 ````
-### EXAMPLE 4
+### EXAMPLE 3
 Use Divider parameter to use a custom divider string. Default is ' '
 ```powershell
 PS > Split-StringPreserverWholeWords -string $string -SplitLength 47 -Divider u
