@@ -48,13 +48,13 @@ function Split-StringPreserverWholeWords {
             }else{
                 $text = $string.Substring($lastIndex+1)
             }
-            Split-StringPreserverWholeWords -string $text -splitLength $splitLength -OldString $OldString -FindSmallestDivider:$FindSmallestDivider -Divider $Divider
+            Split-StringPreserverWholeWords -string $text -splitLength $splitLength -OldString $OldString -FindSmallestDivider:$FindSmallestDivider -Divider $Divider -TrimOutput:$TrimOutput
         } 
         else{
             if ($TrimOutput){
-                ($string[$($lastIndex+1)..$($string.Length)] -join '').trim()
+                $string.Substring($lastIndex+1).trim()
             }else{
-                $string[$($lastIndex+1)..$($string.Length)] -join ''
+                $string.Substring($lastIndex+1)
             }
             
         }    
